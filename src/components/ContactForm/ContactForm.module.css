@@ -1,0 +1,64 @@
+/* ContactForm.module.css */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fundal semi-transparent pentru o mai bună lizibilitate */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Fundal semi-transparent pentru o mai bună lizibilitate */
+}
+
+.button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    color: #333;
+    /* Culoare mai închisă pentru o mai bună lizibilitate */
+}
+
+.mainDiv {
+    background-image: url('./coffee-1250405_1920.jpg');
+    /* Înlocuiește cu calea către imaginea ta */
+    background-size: cover;
+    /* Asigură că imaginea acoperă întregul container */
+    background-position: center;
+    /* Centrează imaginea în container */
+    background-repeat: no-repeat;
+    /* Previne repetarea imaginii */
+    width: 100%;
+    /* Setează lățimea containerului */
+    height: 100vh;
+    /* Setează înălțimea containerului la 100% din înălțimea vizualizării */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centrează conținutul pe verticală */
+    align-items: center;
+    /* Centrează conținutul pe orizontală */
+}
