@@ -3,25 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import ContactForm from '../components/ContactForm/ContactForm.jsx';
 import ContactList from '../components/ContactList/ContactList.jsx';
 import Filter from '../components/Filter/Filter.jsx';
-import { addContact, deleteContact } from '../features/contacts/contactsSlice.jsx';
+import { fetchContacts, addContact, deleteContact } from '../features/contacts/contactsSlice.jsx';
 import { setFilter } from '../features/filter/filterSlice.jsx';
 import styles from '../components/ContactForm/ContactForm.module.css';
 
 const App = () => {
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.filter);
+  const isLoading = useSelector(state => state.contacts.isLoading);
+  const error = useSelector(state => state.contacts.error);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedContacts = localStorage.getItem('contacts');
-    if (storedContacts) {
-      dispatch(addContact(JSON.parse(storedContacts)));
-    }
+    dispatch(fetchContacts());
   }, [dispatch]);
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const handleAddContact = (newContact) => {
     const duplicate = contacts.find(contact => contact.name === newContact.name);
@@ -46,9 +41,12 @@ const App = () => {
       <ContactForm addContact={handleAddContact} />
       <h2 className={styles.title}>Contacts</h2>
       <Filter filter={filter} setFilter={(value) => dispatch(setFilter(value))} />
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
       <ContactList contacts={filteredContacts} deleteContact={handleDeleteContact} />
     </div>
   );
 };
 
 export default App;
+
